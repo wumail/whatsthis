@@ -14,6 +14,7 @@ export default class PluginCanvas {
     this.ctx.clearRect(0, 0, this.width, this.height);
   }
   draw(edges: any, nodes: any, text: any) {
+    // console.log(nodes);
     try {
       edges.forEach((edge: any) => {
         this.ctx.save();
@@ -23,18 +24,20 @@ export default class PluginCanvas {
         edge.genPath();
         const { path, marker } = edge;
         this.ctx.stroke(new Path2D(path));
-        Object.keys(marker.brush).forEach((key: string) => {
-          const a = this.ctx[key];
-          if (a) {
-            if (typeof a === "function") {
-              a(marker.brush[key]);
-            } else {
-              this.ctx[key] = marker.brush[key];
+        if (marker) {
+          Object.keys(marker.brush).forEach((key: string) => {
+            const a = this.ctx[key];
+            if (a) {
+              if (typeof a === "function") {
+                a(marker.brush[key]);
+              } else {
+                this.ctx[key] = marker.brush[key];
+              }
             }
-          }
-        });
-        this.ctx.stroke(new Path2D(marker.path));
-        this.ctx.fill(new Path2D(marker.path));
+          });
+          this.ctx.stroke(new Path2D(marker.path));
+          this.ctx.fill(new Path2D(marker.path));
+        }
 
         this.ctx.restore();
       });

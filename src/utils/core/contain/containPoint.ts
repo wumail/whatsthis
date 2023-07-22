@@ -41,12 +41,8 @@ export function containPoint(p: Point, instance: any) {
 export function containPointByShape(p: Point, shape: any) {
   if (shape instanceof Ellipse) {
     return isEllipseContainPoint(shape, p);
-  } else if (shape instanceof Rectangle) {
-    return isRectangleContainPoint(shape, p);
-  } else if (shape instanceof Polygon) {
-    return isPolygonContainPoint(shape, p);
   }
-  return false;
+  return isPolygonContainPoint(shape, p);
 }
 
 export function isEllipseContainPoint(shape: any, p: Point) {

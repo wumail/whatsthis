@@ -74,4 +74,10 @@ export class Ellipse extends Node {
     // }
     return (this.path = path);
   }
+
+  scale(sx: number, sy?: number | undefined): this {
+    this.longAxis = this.longAxis * sx;
+    this.shortAxis = this.shortAxis * (sy ?? sx);
+    return super.scale(sx, sy);
+  }
 }
