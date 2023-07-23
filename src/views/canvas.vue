@@ -22,9 +22,9 @@ onMounted(() => {
   const n1 = new Ellipse(100, 100);
   n1.translate(200, 200);
   const n2 = new Ellipse(100, 100);
-  n2.translate(800, 200).scale(1.5, 1);
+  n2.translate(800, 200);
   const n3 = new Rectangle(100, 100);
-  n3.translate(1200, 200).rotate(Math.PI / 4);
+  n3.translate(1200, 200);
 
   /**
    * {

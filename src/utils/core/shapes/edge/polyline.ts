@@ -72,7 +72,13 @@ export class Polyline extends Edge {
     const { startAnchor, endAnchor } = this;
     const s = startAnchor.coord;
     const e = endAnchor.coord;
-    const [_, coords] = ManhattanLayout(s, e, this.startBBox, this.endBBox, 10);
+    const coords: any[] = ManhattanLayout(
+      s,
+      e,
+      this.startBBox,
+      this.endBBox,
+      10
+    );
     // const path = `M ${s.x} ${s.y} L ${e.x} ${e.y}`;
     const path = `M ${coords[0].x} ${coords[0].y} ${coords
       .slice(1)

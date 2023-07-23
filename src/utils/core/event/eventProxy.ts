@@ -5,6 +5,8 @@ import {
 } from "../contain/containPoint";
 import { redraw } from "../schedule/schedule";
 
+const step = 20;
+
 export function findElement(e: any) {
   const local = windowToLocal(e);
   const searchResult = window.tree.search({
@@ -70,7 +72,11 @@ export function eventProxy(brush: any) {
       const { isDragging, ele, offset } = window as any;
       if (isDragging && ele) {
         const { x, y } = windowToLocal(e);
-        x && y && ele.translate(x - offset[0], y - offset[1]);
+        const timeX = Math.floor((x - offset[0]) / step);
+        const timeY = Math.floor((y - offset[1]) / step);
+        const offsetX = timeX * step;
+        const offsetY = timeY * step;
+        x && y && ele.translate(offsetX, offsetY);
       }
     },
     { passive: true }
